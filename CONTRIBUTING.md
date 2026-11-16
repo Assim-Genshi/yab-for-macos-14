@@ -55,6 +55,8 @@ If a Developer ID certificate of your own is in your keychain, `build.sh` signs 
 
 `swift build` alone builds a debug executable without the app bundle; `swift run Fast` starts it, but some features (extensions, keychain, App Intents) need the bundle, so prefer `./build.sh`.
 
+To build an Intel app targeting macOS 14 from GitHub, run **Build macOS 14 Intel** from the Actions tab with **Run workflow**. Download the `yab-dev-macos14-intel` artifact from the completed run. It is an ad hoc-signed WebKit build; Chromium is not included.
+
 ### Chromium tabs (optional, Apple silicon)
 
 The released Yab bundles the Chromium Embedded Framework (CEF) with Yab's own patches, built from Chromium source. That patched SDK is too large to ship in the repository and takes hours to build, so contributors start from the official CEF build instead:

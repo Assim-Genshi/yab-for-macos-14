@@ -173,7 +173,7 @@ BUILD="${YAB_BUILD_NUMBER:-$(date +%Y%m%d%H%M)}"
 [[ "$BUILD" =~ ^[0-9]{12}$ ]] || { echo "YAB_BUILD_NUMBER ($BUILD) isn't a 12-digit build number" >&2; exit 1; }
 # The oldest macOS this runs on, in the plist, and in the appcast so an
 # older Mac is not handed a build it can't open.
-MINIMUM="15.4"
+MINIMUM="14.0"
 
 # yab Dev uses SwiftPM's debug compilation plan with -O: optimized, but
 # built a file at a time. Do not override release's whole-module plan with

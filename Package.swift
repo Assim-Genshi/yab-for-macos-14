@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "Fast",
-    platforms: [.macOS("15.4")],
+    platforms: [.macOS("14.0")],
     targets: [
         .target(name: "YabCoreClient", path: "YabCore/Client/Sources/YabCoreClient",
                 swiftSettings: [.swiftLanguageMode(.v5)]),
@@ -77,7 +77,7 @@ let package = Package(
             // is drawn the way macOS 15 drew it. Stamped with the SDK it is
             // actually built with, the settings window, menus and alerts get
             // the current look.
-            linkerSettings: [.unsafeFlags(["-Xlinker", "-platform_version", "-Xlinker", "macos", "-Xlinker", "15.4", "-Xlinker", "26.0"])]
+            linkerSettings: [.unsafeFlags(["-Xlinker", "-platform_version", "-Xlinker", "macos", "-Xlinker", "14.0", "-Xlinker", "26.0"])]
         ),
         // What ./bench can't see: the pure parts, parsers and rules, held to
         // fixed inputs. `swift test`. One folder, a file per area.

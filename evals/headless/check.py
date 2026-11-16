@@ -113,7 +113,7 @@ class Probe:
         with open(os.path.join(self.app, "Contents", "Info.plist"), "wb") as f:
             plistlib.dump({"CFBundleIdentifier": self.bundle_id, "CFBundleExecutable": "YabHeadlessCheck",
                            "CFBundleName": NAME, "CFBundleDisplayName": NAME, "CFBundlePackageType": "APPL", "NSPrincipalClass": "NSApplication",
-                           "LSMinimumSystemVersion": "15.4"}, f)
+                           "LSMinimumSystemVersion": "14.0"}, f)
         subprocess.run(["codesign", "-s", "-", "--force", self.app], capture_output=True)
         self.home = None if keychain else os.path.join(scratch, "home")
         if self.home:

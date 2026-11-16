@@ -6,7 +6,7 @@ Yet another browser. A small, quiet browser for the Mac, with an app for iPhone.
 
 Yab is a browser with nothing in the way: a row of tabs, across the top or down the left, and the page. One field takes addresses and searches. Pages run on **WebKit**, the engine inside every Mac, or, on Apple silicon, on **Chromium**, per tab or per site. Agents from the AI providers you already pay for can work in tabs of their own, and never see a private tab.
 
-**[Download Yab](https://yetanotherbrowser.com)** · macOS 15.4 or later · [What's new](https://yetanotherbrowser.com/changelog) · [Manual](https://yetanotherbrowser.com/manual)
+**[Download Yab](https://yetanotherbrowser.com)** · macOS 14 or later · [What's new](https://yetanotherbrowser.com/changelog) · [Manual](https://yetanotherbrowser.com/manual)
 
 ## What it does
 

@@ -78,7 +78,7 @@ for suffix, identifier in [('', ''), (' (GPU)', '.gpu'), (' (Renderer)', '.rende
                 CFBundleDevelopmentRegion='en', CFBundleInfoDictionaryVersion='6.0',
                 CFBundleVersion=parent['CFBundleVersion'],
                 CFBundleShortVersionString=parent['CFBundleShortVersionString'],
-                LSMinimumSystemVersion=parent.get('LSMinimumSystemVersion', '15.4'),
+                LSMinimumSystemVersion=parent.get('LSMinimumSystemVersion', '14.0'),
                 LSUIElement=True, LSBackgroundOnly=True, LSFileQuarantineEnabled=True, LSEnvironment={'MallocNanoZone': '0'},
                 NSHighResolutionCapable=True, NSSupportsAutomaticGraphicsSwitching=True)
     if suffix == ' (Alerts)':

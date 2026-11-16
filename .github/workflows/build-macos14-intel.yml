@@ -1,0 +1,56 @@
+name: Build macOS 14 Intel
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build Yab Dev for Intel
+    runs-on: macos-15-intel
+    timeout-minutes: 60
+    env:
+      YAB_SIGN_IDENTITY: "-"
+      YAB_UNIVERSAL: "0"
+      YAB_APP_CACHE: "0"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Check runner and toolchain
+        run: |
+          sw_vers
+          test "$(uname -m)" = x86_64
+          xcodebuild -version
+          swift --version
+
+      - name: Cache SwiftPM build products
+        uses: actions/cache@v4
+        with:
+          path: .build
+          key: spm-macos-15-intel-${{ hashFiles('Package.swift', 'Package.resolved') }}-${{ github.sha }}
+          restore-keys: |
+            spm-macos-15-intel-${{ hashFiles('Package.swift', 'Package.resolved') }}-
+
+      - name: Build Yab Dev
+        run: ./build.sh
+
+      - name: Verify the Intel app and deployment target
+        run: |
+          app="build/yab Dev.app"
+          executable="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$app/Contents/Info.plist")"
+          test "$(lipo -archs "$app/Contents/MacOS/$executable")" = x86_64
+          test "$(plutil -extract LSMinimumSystemVersion raw -o - "$app/Contents/Info.plist")" = 14.0
+          codesign --verify --deep --strict "$app"
+          ditto -c -k --sequesterRsrc --keepParent "$app" build/yab-dev-macos14-intel.zip
+
+      - name: Upload app
+        uses: actions/upload-artifact@v4
+        with:
+          name: yab-dev-macos14-intel
+          path: build/yab-dev-macos14-intel.zip
+          if-no-files-found: error
+          retention-days: 7
