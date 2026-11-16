@@ -9,7 +9,7 @@ permissions:
 jobs:
   build:
     name: Build Yab Dev for Intel
-    runs-on: macos-15-intel
+    runs-on: macos-26-intel
     timeout-minutes: 60
     env:
       YAB_SIGN_IDENTITY: "-"
@@ -28,12 +28,12 @@ jobs:
           swift --version
 
       - name: Cache SwiftPM build products
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .build
-          key: spm-macos-15-intel-${{ hashFiles('Package.swift', 'Package.resolved') }}-${{ github.sha }}
+          key: spm-macos-26-intel-${{ hashFiles('Package.swift', 'Package.resolved') }}-${{ github.sha }}
           restore-keys: |
-            spm-macos-15-intel-${{ hashFiles('Package.swift', 'Package.resolved') }}-
+            spm-macos-26-intel-${{ hashFiles('Package.swift', 'Package.resolved') }}-
 
       - name: Build Yab Dev
         run: ./build.sh
